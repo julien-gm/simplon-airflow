@@ -44,7 +44,7 @@ count_errors = BranchPythonOperator(
     dag=dag
 )
 
-send_mail = DummyOperator(task_id="send_mail")
-do_nothing = DummyOperator(task_id="do_nothing")
+send_mail = DummyOperator(task_id="send_mail", dag=dag)
+do_nothing = DummyOperator(task_id="do_nothing", dag=dag)
 
 existing_file >> count_errors >> [send_mail, do_nothing]
